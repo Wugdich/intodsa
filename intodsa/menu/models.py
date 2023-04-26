@@ -1,3 +1,9 @@
 from django.db import models
 
-# Create your models here.
+
+class Menu(models.Model):
+    # fields
+
+
+    def __str__(self):
+        return
