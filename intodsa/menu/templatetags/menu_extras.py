@@ -1,3 +1,4 @@
+from django.db import connection
 from django import template
 
 from menu.models import MenuItem
@@ -9,4 +10,6 @@ register = template.Library()
 @register.simple_tag
 def draw_menu(request):
     menu = MenuItem.objects.all()
+    for q in connection.queries:
+        print(q)
     return menu
