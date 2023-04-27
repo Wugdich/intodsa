@@ -1,0 +1,14 @@
+.main-container{
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+.menu-container{
+    border-right: thick solid #000;
+    margin: 8px;
+}
+.content-block{
+    margin: 8px;
+}
+.active-menuitem{
+    background-color: #74B72E;
+}
