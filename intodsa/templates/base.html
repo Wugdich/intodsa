@@ -1,32 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-    <style>
-        .main-container{
-            display: grid;
-            grid-template-columns: 1fr 3fr;
-        }
-        .menu-container{
-            border-right: thick solid #000;
-            margin: 8px;
-        }
-        .content-block{
-            margin: 8px;
-        }
-    </style>
+    {% load static %}
     <head>
         <title>Intodsa</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
     </head>
     <body>
         <div class='main-container'>
             <div class='menu-container'>
-                <h3>Menu</h3>
-                {% load menu_extras %}
-                {% draw_menu request as menu %}
-                {% for item in menu %}
-                    <p>{{ item.title }}</p> 
-                {% endfor %}
+                {% include 'menu.html' %}
             </div>
 
             <div class='content-block'>
