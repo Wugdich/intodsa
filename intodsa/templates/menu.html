@@ -1,7 +1,4 @@
 <h3>Menu</h3>
 {% load menu_extras %}
-{% draw_menu request as menu %}
 
-{% for item in menu %}
-<p {% if item.path == request.path%} class="active-menuitem" {% endif %} ><a href="{{ item.path }}">{{ item.title }}</a></p> 
-{% endfor %}
+{% draw_menu request %}
