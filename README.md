@@ -11,13 +11,13 @@
 ## Установка и запуск
 
 Для использования необходимо клонировать репозиторий:
-```
+```console
 git clone git@github.com:Wugdich/intodsa.git
 cd intodsa
 ```
 
 После этого нужно создать виртуальное окружение и установить зависимости:
-```bash
+```console
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
@@ -25,7 +25,7 @@ pip install -r requirements.txt
 
 Также потребуется создать файл, который будет содержать переменый 
 виртуального окружения:
-```
+```console
 touch .env
 ```
 
@@ -37,7 +37,7 @@ SECRET_KEY='your_secret_key_value'
 
 Далее опускаемся в директорию с проектом, запускаем миграции,
 создаем суперпользователя и запускаем сервер:
-```
+```console
 cd intodsa
 python manage.py makemigrations
 python manage.py migrate
