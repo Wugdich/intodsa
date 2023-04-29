@@ -16,7 +16,7 @@ def draw_menu(request: WSGIRequest):
 
     rel_table, cur_menuitem = _menu_handler(request)
     tree: str = ''
-
+    active_menuitem: MenuItem | None = cur_menuitem
     # Initialize variable to store previous menu item value
     prev_menuitem: MenuItem | None = None
     while cur_menuitem:
@@ -25,7 +25,13 @@ def draw_menu(request: WSGIRequest):
         sub_tree: str = ''
         # Iterate through current menu item's childs
         for child in rel_table[cur_menuitem.title]:
-            sub_tree += _li_tag(_a_tag(child.title, child.path))
+            if active_menuitem == child:
+                sub_tree += _li_tag(
+                        _a_tag(child.title, child.path), 
+                        cls='active-menuitem'
+                        )
+            else:
+                sub_tree += _li_tag(_a_tag(child.title, child.path))
             if prev_menuitem and child == prev_menuitem:
                 sub_tree += tree
         sub_tree = _ul_tag(sub_tree)
@@ -37,7 +43,13 @@ def draw_menu(request: WSGIRequest):
 
     sub_tree = ''
     for child in rel_table['root']:
-        sub_tree += _li_tag(_a_tag(child.title, child.path))
+        if active_menuitem == child:
+            sub_tree += _li_tag(
+                    _a_tag(child.title, child.path), 
+                    cls='active-menuitem'
+                    )
+        else:
+            sub_tree += _li_tag(_a_tag(child.title, child.path))
         if prev_menuitem and child == prev_menuitem:
             sub_tree += tree
     sub_tree = _ul_tag(sub_tree)
@@ -45,8 +57,12 @@ def draw_menu(request: WSGIRequest):
 
     return mark_safe(tree)
 
-def _li_tag(s: str) -> str:
-    return '<li>' + s + '</li>'
+def _li_tag(s: str, cls: str = '') -> str:
+    if cls:
+        output = f'<li class="{cls}">' + s + '</li>'
+    else:
+        output = '<li>' + s + '</li>'
+    return output
 
 def _ul_tag(s: str) -> str:
     return '<ul>' + s + '</ul>'
